@@ -1,17 +1,36 @@
 ---
+import { Icon } from 'astro-icon/components';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+// --------------------------ui--------------------------------------
+import Section1 from '../components/sections/Section1.astro';
+import Section2 from '../components/sections/Section2.astro';
+import Section3 from '../components/sections/Section3.astro';
+import Section4 from '../components/sections/Section4.astro';
+import Section5 from '../components/sections/Section5.astro';
+import Section6 from '../components/sections/Section6.astro';
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="テキスト">
+	<Hero />
+	<Section1 />
+	<Section2 />
+	<Section3 />
+	<Section4 />
+	<Section5 />
+	<Section6 />
+</BaseLayout>
+
+<style lang="scss">
+	@use '../styles/variables' as *;
+	@use '../styles/mixins' as *;
+
+	h1 {
+		&:hover {
+			color: red;
+		}
+	}
+
+</style>

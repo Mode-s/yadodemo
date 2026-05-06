@@ -1,0 +1,32 @@
+---
+import '../styles/reset.css';
+import '../styles/global.scss';
+
+import Header from '../components/header/Header.astro';
+import Footer from '../components/footer/Footer.astro';
+
+import MobileMenu from '../components/header/MobileMenu.astro';
+import BackToTop from '../components/ui/BackToTop.astro';
+
+const { title } = Astro.props;
+---
+
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{ title }</title>
+	</head>
+	<body>
+		<Header />
+		<MobileMenu />
+		<main>
+			<slot />
+		</main>
+    <Footer />
+		<BackToTop />
+	</body>
+</html>

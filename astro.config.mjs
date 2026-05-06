@@ -1,5 +1,11 @@
-// @ts-check
+// astro.config.mjs
 import { defineConfig } from 'astro/config';
+import icon from 'astro-icon';
 
-// https://astro.build/config
-export default defineConfig({});
+/** @type {import('astro').AstroUserConfig} */
+export default defineConfig({
+  // この integrations プロパティに対して型アサーションを行う
+  integrations: [
+    icon(),
+  ],
+});

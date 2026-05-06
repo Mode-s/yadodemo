@@ -1,0 +1,29 @@
+---
+import Navigation from './Navigation.astro';
+import Hamburger from './HamburgerMenu.astro';
+---
+<header class="header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <a href="/">ロゴ</a>
+    </div>
+    <nav class="pc-nav">
+      <Navigation />
+    </nav>
+    <Hamburger />
+  </div>
+</header>
+
+<style lang="scss">
+  @use '../../styles/variables' as *;
+  @use '../../styles/mixins' as *;
+
+  .header-inner {
+    max-width: 1024px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 10px;
+  }
+</style>

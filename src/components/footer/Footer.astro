@@ -1,0 +1,80 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Items } from '../../constants/site-map';
+---
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <a href="/">ロゴ</a>
+      <p class="address">アドレステキスト</p>
+      <p class="tel">123-4567-8910</p>
+    </div>
+    <nav class="pc-nav">
+      <ul class="nav-list">
+        {Items.map((item) => {
+           // TypeScriptに「これは共通のプロパティだ」と確信させるための安全な代入
+          const isExternal = item.isExternal === true;
+          const target = isExternal ? "_blank" : undefined;
+          const rel = isExternal ? "noopener noreferrer" : undefined;
+            
+          return (
+            <li class="nav-item">
+              <a 
+                href={item.href}
+                target={target}
+                rel={rel}
+                class="nav-link"
+              >
+                {item.type === 'icon' ? (
+                  /* ★修正ポイント: 複数の要素を返すので空タグ <> で囲む */
+                  <>
+                    <Icon name={item.iconName} class="nav-icon" />
+                    <span class="sr-only">{item.label}</span>
+                  </>
+                ) : (
+                    /* 通常のテキストリンク */
+                  <span class="text-label">{item.label}</span>
+                )}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </div>
+  <div class="copyright-wrap">
+    <small class="copyright">&copy; 2026 text All Rights Reserved.</small>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use '../../styles/variables' as *;
+  @use '../../styles/mixins' as *;
+
+  .footer-inner {
+    max-width: 1024px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .footer .footer-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer .nav-list {
+    display: flex;
+    gap: 10px;
+  }
+
+  .footer .copyright-wrap {
+    max-width: 1024px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+</style>

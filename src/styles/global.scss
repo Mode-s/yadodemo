@@ -1,0 +1,41 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+body {
+  background-image: url($bg);
+}
+
+// —————————————————— Section Container
+.section {
+  padding: 60px 0 70px;
+}
+
+.section.inner {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+// —————————————————— Section Title
+.section-title-wrap {
+  text-align: center;
+}
+
+// —————————————————— Navigation
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.nav-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
