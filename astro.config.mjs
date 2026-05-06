@@ -1,5 +1,5 @@
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
 
 /** @type {import('astro').AstroUserConfig} */
@@ -8,4 +8,9 @@ export default defineConfig({
   integrations: [
     icon(),
   ],
+  fonts: [{
+    provider: fontProviders.google(),
+    name: "Yomogi",
+    cssVariable: "--font-yomogi",
+  }]
 });
