@@ -1,10 +1,66 @@
 ---
+import { Icon } from 'astro-icon/components';
 ---
-<section class="section four">
+<section class="section access" id="access">
   <div class="inner">
-    <div class="section-title-wrap">
-      <h2 class="title">タイトル</h2>
-      <p class="sub-title">タイトル</p>
+    <h2 class="access-title">アクセス</h2>
+
+    <div class="access-intro">
+      <p class="access-intro-text">自然に囲まれた山あいの静かな立地です。</p>
+    </div>
+
+    <div class="access-content">
+
+      <div class="access-info">
+        <dl class="access-list">
+          <div class="access-item">
+            <dt class="access-item-label">
+              <Icon name="mdi:train" class="access-item-icon" />
+              電車でお越しの方
+            </dt>
+            <dd class="access-item-text">
+              〇〇駅より路線バスで約40分<br />
+              「静寂庵前」下車 徒歩5分<br />
+              <span class="access-item-note">※ご到着時に送迎もあります。</span>
+            </dd>
+          </div>
+          <div class="access-item">
+            <dt class="access-item-label">
+              <Icon name="mdi:car" class="access-item-icon" />
+              お車でお越しの方
+            </dt>
+            <dd class="access-item-text">
+              〇〇ICより約35分（無料駐車場あり）<br />
+              カーナビは「静寂庵」で検索ください。
+            </dd>
+          </div>
+          <div class="access-item">
+            <dt class="access-item-label">
+              <Icon name="mdi:bus" class="access-item-icon" />
+              送迎について
+            </dt>
+            <dd class="access-item-text">
+              最寄り駅からの送迎を承っております。<br />
+              前日までにご予約をお願いいたします。
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Googleマップ埋め込み -->
+      <div class="access-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=YOUR_EMBED_URL"
+          width="400"
+          height="300"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="静寂庵の地図"
+        ></iframe>
+      </div>
+
     </div>
   </div>
 </section>
@@ -13,4 +69,96 @@
   @use '../../styles/variables' as *;
   @use '../../styles/mixins' as *;
 
+  /* access-title */
+  .access-title {
+    @include section-title;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+  /* access-intro */
+  .access-intro {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .access-intro-text {
+    font-size: $size-sm;
+    color: $color-text-light;
+  }
+
+  /* access-content */
+  .access-content {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+
+    @include sp {
+      flex-direction: column;
+      gap: 32px;
+    }
+  }
+
+  /* ── 左: アクセス情報 ── */
+  .access-info {
+    max-width: 360px;
+  }
+
+  .access-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .access-item-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: $size-base;
+    font-weight: bold;
+    color: $color-primary;
+  }
+
+  .access-item-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    color: $color-accent;
+  }
+
+  .access-item-text {
+    margin-top: 8px;
+    font-size: $size-sm;
+    line-height: 1.8;
+    padding-left: 28px; // アイコン幅 + gap 分のインデント
+  }
+
+  .access-item-note {
+    font-size: $size-xs;
+    color: $color-text-light;
+  }
+
+  /* ── 右: Googleマップ ── */
+  .access-map {
+    flex-shrink: 0;
+    width: 400px;
+    overflow: hidden;
+    border-radius: 4px;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @include tablet {
+      width: 300px;
+    }
+
+    @include sp {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+  }
 </style>

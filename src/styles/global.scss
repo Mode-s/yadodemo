@@ -7,7 +7,8 @@ body {
   background-size: cover;
   background-position: center;
   font-family: var(--font-yomogi);
-  
+  font-size: $size-base;
+  line-height: 1.8;
 }
 
 // —————————————————— Section Container
@@ -15,10 +16,10 @@ body {
   padding: 60px 0 70px;
 }
 
-.section.inner {
+.section .inner {
   max-width: 1024px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 20px;
 }
 
 // —————————————————— Section Title

@@ -5,11 +5,15 @@ import Hamburger from './HamburgerMenu.astro';
 <header class="header">
   <div class="header-inner">
     <div class="header-logo">
-      <a href="/">ロゴ</a>
+      <a href="/">
+        <span class="header-logo-sub">山あいの湯宿</span>
+        <span class="header-logo-main">静寂庵</span>
+      </a>
     </div>
     <nav class="pc-nav">
       <Navigation />
     </nav>
+    <a href="#reserve" class="header-cta">宿泊予約</a>
     <Hamburger />
   </div>
 </header>
@@ -24,14 +28,56 @@ import Hamburger from './HamburgerMenu.astro';
     left: 0;
     width: 100%;
     z-index: $z-header;
+    background-color: rgba(250, 246, 240, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid $color-border;
   }
 
   .header-inner {
     max-width: 1024px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-between;
     margin: 0 auto;
-    padding: 10px;
+    padding: 12px 20px;
+  }
+
+  .header-logo-sub {
+    font-size: $size-xs;
+    color: $color-text-light;
+  }
+
+  .header-logo-main {
+    font-size: $size-xl;
+    font-weight: bold;
+    color: $color-primary;
+    letter-spacing: 0.1em;
+  }
+
+  .pc-nav {
+    @include tablet {
+      display: none;
+    }
+  }
+
+  .header-cta {
+    display: inline-block;
+    padding: 8px 24px;
+    background-color: $color-accent;
+    color: $color-text-white;
+    font-size: $size-sm;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: $color-accent-dark;
+    }
+
+    @include reduced-motion {
+      transition: none;
+    }
+
+    @include tablet {
+      display: none;
+    }
   }
 </style>

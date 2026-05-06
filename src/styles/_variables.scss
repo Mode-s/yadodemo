@@ -1,5 +1,47 @@
 // Background image
 $bg: '/images/bg.png';
 
+// BreakPoint
+$tablet: 768px;
+$sp: 425px;
+
+// =============================================
+// カラー
+// =============================================
+
+// テキスト
+$color-text: #3d2b1f;
+$color-text-light: #6b5344;
+$color-text-white: #faf6f0;
+
+// ブランド
+$color-primary: #7b6b4a;
+$color-accent: #8b6f47;
+$color-accent-dark: #6b5333;
+
+// 背景
+$color-bg: #faf6f0;
+$color-bg-warm: #f5ede0;
+$color-bg-dark: #4a3728;
+
+// 装飾
+$color-pink: #c8a0a0;
+$color-pink-light: #f0e0e0;
+$color-green: #7a8a5a;
+$color-border: #d4c4a8;
+
+// Font Size
+$size-xs: 0.75rem;     // 12px
+$size-sm: 0.875rem;    // 14px
+$size-base: 1rem;      // 16px
+$size-lg: 1.125rem;    // 18px
+$size-xl: 1.5rem;      // 24px
+$size-2xl: 2rem;       // 32px
+$size-3xl: 2.5rem;     // 40px
+
 // z-index
+$z-base: 1;
+$z-dropdown: 100;
 $z-header: 200;
+$z-modal-overlay: 300;
+$z-modal: 400;

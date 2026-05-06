@@ -31,12 +31,11 @@ export type NavItem = LinkItem | IconItem;
  * satisfies を使うことで、as constの厳密さを保ちつつNavItem型であることを保証します
  */
 export const Items = [
-  { type: 'link', label: 'テキスト', href: '/', isExternal: false },
-  { type: 'link', label: 'テキスト', href: '/', isExternal: false },
-  { type: 'link', label: 'テキスト', href: '/', isExternal: false },
-  { type: 'link', label: 'テキスト', href: '/', isExternal: false },
-  { type: 'link', label: 'テキスト', href: '/', isExternal: false },
-  { type: 'link', label: 'テキスト', href: '/', isExternal: false },
+  { type: 'link', label: 'お宿のこだわり', href: '/', isExternal: false },
+  { type: 'link', label: 'お部屋', href: '/', isExternal: false },
+  { type: 'link', label: 'お料理', href: '/', isExternal: false },
+  { type: 'link', label: '温泉', href: '/', isExternal: false },
+  { type: 'link', label: 'アクセス', href: '/', isExternal: false },
   { 
     type: 'icon', 
     label: 'Instagram', 
@@ -45,3 +44,9 @@ export const Items = [
     isExternal: true 
   },
 ] as const satisfies readonly NavItem[];
+
+export const FooterLinks = [
+  { label: 'よくあるご質問', href: '#' },
+  { label: 'お問い合わせ', href: '#' },
+  { label: 'プライバシーポリシー', href: '#' },
+] as const;

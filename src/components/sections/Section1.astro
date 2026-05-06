@@ -1,11 +1,16 @@
 ---
 ---
-<section class="section first">
+<section class="section concept" id="concept">
   <div class="inner">
-    <div class="section-title-wrap">
-      <h2 class="title">タイトル</h2>
-      <p class="sub-title">タイトル</p>
+    <div class="concept-content">
+      <h2 class="concept-title">日常を忘れる、あなただけの場所</h2>
+      <div class="concept-body">
+        <p class="concept-text">昔から湯治場として親しまれてきたこの地は、やさしい湯と自然に恵まれ、人びとの心と身体を癒してきました。</p>
+        <p class="concept-text">静寂庵は、山の恵みを活かし、素材や空間、そしておもてなしのひとつひとつにこだわった小さなお宿です。</p>
+        <p class="concept-text">ここには、時間の流れがゆるやかになる特別な空気が流れています。自分を見つめ直し、明日への活力を取り戻す旅をお届けします。</p>
+      </div>
     </div>
+    <p class="concept-vertical" aria-hidden="true">静けさに<br />身をゆだねて<br />深呼吸。</p>
   </div>
 </section>
 
@@ -13,5 +18,44 @@
   @use '../../styles/variables' as *;
   @use '../../styles/mixins' as *;
   
-  
+  .concept > .inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+
+    @include sp {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  .concept-body {
+    margin-top: 32px;
+  }
+
+  .concept-text {
+    line-height: 2;
+    color: $color-text;
+
+    & + & {
+      margin-top: 16px;
+    }
+  }
+
+  .concept-vertical {
+    writing-mode: vertical-rl;
+    font-size: $size-lg;
+    color: $color-text-light;
+    line-height: 2;
+    letter-spacing: 0.15em;
+    flex-shrink: 0;
+    padding-top: 20px;
+
+    @include sp {
+      writing-mode: horizontal-tb;
+      font-size: $size-base;
+      padding-top: 0;
+      text-align: right;
+    }
+  }
 </style>
