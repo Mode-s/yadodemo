@@ -3,7 +3,11 @@
 
 body {
   background-image: url($bg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   font-family: var(--font-yomogi);
+  
 }
 
 // —————————————————— Section Container

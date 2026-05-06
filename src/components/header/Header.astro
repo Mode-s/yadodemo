@@ -18,6 +18,14 @@ import Hamburger from './HamburgerMenu.astro';
   @use '../../styles/variables' as *;
   @use '../../styles/mixins' as *;
 
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: $z-header;
+  }
+
   .header-inner {
     max-width: 1024px;
     display: flex;
