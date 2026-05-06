@@ -1,10 +1,62 @@
 ---
+import { Icon } from 'astro-icon/components';
+
+const facilities = [
+  {
+    category: '全室',
+    items: [
+      { icon: 'mdi:wifi', label: 'Wi-Fi' },
+      { icon: 'mdi:television', label: 'テレビ' },
+      { icon: 'mdi:fridge-outline', label: '冷蔵庫' },
+      { icon: 'mdi:coffee', label: 'お茶セット' },
+    ],
+  },
+  {
+    category: '共有スペース',
+    items: [
+      { icon: 'mdi:hot-tub', label: '大浴場' },
+      { icon: 'mdi:sofa', label: 'ラウンジ' },
+      { icon: 'mdi:parking', label: '無料駐車場' },
+    ],
+  },
+  {
+    category: '無料サービス',
+    items: [
+      { icon: 'mdi:bed', label: 'タオル・浴衣' },
+      { icon: 'mdi:toothbrush', label: '歯ブラシ' },
+      { icon: 'mdi:hair-dryer', label: 'ドライヤー' },
+    ],
+  },
+  {
+    category: '有料サービス',
+    items: [
+      { icon: 'mdi:spa-outline', label: 'マッサージ' },
+      { icon: 'mdi:drink-outline', label: '飲み物各種' },
+      { icon: 'mdi:washing-machine', label: 'ランドリー' },
+    ],
+  },
+];
 ---
-<section class="section third">
+<section class="section facility" id="facility">
   <div class="inner">
     <div class="section-title-wrap">
-      <h2 class="title">タイトル</h2>
-      <p class="sub-title">タイトル</p>
+      <h2 class="title">設備・サービス</h2>
+    </div>
+
+    <div class="facility-list">
+      {facilities.map((group) => (
+        <div class="facility-group">
+          <p class="facility-category">{group.category}</p>
+          <ul class="facility-items">
+            {group.items.map((item) => (
+              <li class="facility-item">
+                <Icon name={item.icon} class="facility-item-icon" />
+                <span class="facility-item-label">{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -12,5 +64,71 @@
 <style lang="scss">
   @use '../../styles/variables' as *;
   @use '../../styles/mixins' as *;
-  
+
+  /* facility-list */
+  .facility-list {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 40px auto 0;
+  }
+
+  /* facility-group */
+  .facility-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+
+    @include sp {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  /* facility-category（左のラベル） */
+  .facility-category {
+    width: 120px;
+    flex-shrink: 0;
+    padding: 6px 0;
+    font-size: $size-sm;
+    font-weight: bold;
+    color: $color-text-white;
+    background-color: $color-accent;
+    border-radius: 4px;
+    text-align: center;
+
+    @include sp {
+      width: auto;
+      display: inline-block;
+      padding: 4px 16px;
+    }
+  }
+
+  /* facility-items */
+  .facility-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    padding-top: 4px;
+  }
+
+  /* facility-item */
+  .facility-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .facility-item-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: $color-accent;
+    flex-shrink: 0;
+  }
+
+  .facility-item-label {
+    font-size: $size-sm;
+    color: $color-text;
+  }
 </style>

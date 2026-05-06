@@ -1,14 +1,79 @@
 ---
 import { Image } from 'astro:assets';
-import rotenburoImg from '../../assets/images/rotenburo.jpg';
-import naiyuImg from '../../assets/images/naiyu.jpg';
-import roomImg from '../../assets/images/room.jpg';
+import room01Img from '../../assets/images/hero.png';
+import room02Img from '../../assets/images/hero.png';
+import room03Img from '../../assets/images/hero.png';
+import room04Img from '../../assets/images/hero.png';
+
+const rooms = [
+  {
+    name: '和室 10畳',
+    capacity: '2〜4名',
+    size: '10畳+広縁',
+    desc: '山側の景色が望める落ち着いた和室。季節ごとに移り変わる木々の彩りを、窓越しにお楽しみください。',
+    image: room01Img,
+    alt: '山側の景色が見える和室10畳',
+  },
+  {
+    name: '和洋室',
+    capacity: '2〜5名',
+    size: '8畳+ツインベッド',
+    desc: '和と洋の快適さを兼ね備えた人気のお部屋。畳の間でくつろぎ、ベッドでぐっすりとお休みいただけます。',
+    image: room02Img,
+    alt: '畳とツインベッドのある和洋室',
+  },
+  {
+    name: '露天風呂付き客室',
+    capacity: '2名',
+    size: '12畳+専用露天風呂',
+    desc: 'プライベートな露天風呂を備えた特別室。誰にも邪魔されない贅沢なひとときをお過ごしください。',
+    image: room03Img,
+    alt: '専用露天風呂が付いた客室',
+  },
+  {
+    name: '離れ 特別室',
+    capacity: '2〜3名',
+    size: '15畳+次の間',
+    desc: '本館から独立した離れの一棟。庭園を臨む静謐な空間で、格別の滞在をお届けします。',
+    image: room04Img,
+    alt: '庭園を望む離れの特別室',
+  },
+];
 ---
-<section class="section onsen" id="onsen">
+<section class="section rooms" id="rooms">
   <div class="inner">
     <div class="section-title-wrap">
-      <h2 class="title">タイトル</h2>
-      <p class="sub-title">タイトル</p>
+      <h2 class="title">お部屋</h2>
+    </div>
+
+    <div class="rooms-list">
+      {rooms.map((room, i) => (
+        <div class:list={['rooms-item', { 'rooms-item-reverse': i % 2 !== 0 }]}>
+          <figure class="rooms-item-photo">
+            <Image
+              src={room.image}
+              alt={room.alt}
+              width={600}
+              height={400}
+              loading="lazy"
+            />
+          </figure>
+          <div class="rooms-item-body">
+            <h3 class="rooms-item-name">{room.name}</h3>
+            <dl class="rooms-item-meta">
+              <div class="rooms-item-meta-row">
+                <dt class="rooms-item-meta-label">定員</dt>
+                <dd class="rooms-item-meta-value">{room.capacity}</dd>
+              </div>
+              <div class="rooms-item-meta-row">
+                <dt class="rooms-item-meta-label">広さ</dt>
+                <dd class="rooms-item-meta-value">{room.size}</dd>
+              </div>
+            </dl>
+            <p class="rooms-item-desc">{room.desc}</p>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -17,4 +82,98 @@ import roomImg from '../../assets/images/room.jpg';
   @use '../../styles/variables' as *;
   @use '../../styles/mixins' as *;
 
+  /* rooms-list */
+  .rooms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin-top: 40px;
+
+    @include sp {
+      gap: 40px;
+    }
+  }
+
+  /* rooms-item */
+  .rooms-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    @include tablet {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  /* 偶数番目: 左テキスト 右写真 */
+  .rooms-item-reverse {
+    flex-direction: row-reverse;
+
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+
+  /* rooms-item-photo */
+  .rooms-item-photo {
+    width: 50%;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.08);
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @include tablet {
+      width: 100%;
+    }
+  }
+
+  /* rooms-item-body */
+  .rooms-item-body {
+    flex: 1;
+  }
+
+  .rooms-item-name {
+    font-size: $size-xl;
+    font-weight: bold;
+    color: $color-primary;
+    letter-spacing: 0.05em;
+  }
+
+  /* rooms-item-meta */
+  .rooms-item-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+  }
+
+  .rooms-item-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .rooms-item-meta-label {
+    font-size: $size-xs;
+    color: $color-text-light;
+  }
+
+  .rooms-item-meta-value {
+    font-size: $size-sm;
+    color: $color-text;
+  }
+
+  /* rooms-item-desc */
+  .rooms-item-desc {
+    margin-top: 16px;
+    font-size: $size-base;
+    line-height: 2;
+    color: $color-text;
+  }
 </style>
