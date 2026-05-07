@@ -31,11 +31,11 @@ export type NavItem = LinkItem | IconItem;
  * satisfies を使うことで、as constの厳密さを保ちつつNavItem型であることを保証します
  */
 export const Items = [
-  { type: 'link', label: 'お宿のこだわり', href: '/', isExternal: false },
-  { type: 'link', label: 'お部屋', href: '/', isExternal: false },
-  { type: 'link', label: '設備', href: '/', isExternal: false },
-  { type: 'link', label: 'アクセス', href: '/', isExternal: false },
-  { type: 'link', label: 'お問い合わせ', href: '/', isExternal: false },
+  { type: 'link', label: 'お宿のこだわり', href: '/#concept', isExternal: false },
+  { type: 'link', label: 'お部屋', href: '/#rooms', isExternal: false },
+  { type: 'link', label: '設備', href: '/#facility', isExternal: false },
+  { type: 'link', label: 'アクセス', href: '/#access', isExternal: false },
+  { type: 'link', label: 'お問い合わせ', href: '/#contact', isExternal: false },
   { 
     type: 'icon', 
     label: 'Instagram', 

@@ -1,6 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
-
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/Hero.astro';
 // --------------------------ui--------------------------------------
@@ -9,7 +7,7 @@ import Section2 from '../components/sections/Section2.astro';
 import Section3 from '../components/sections/Section3.astro';
 import Section4 from '../components/sections/Section4.astro';
 import Section5 from '../components/sections/Section5.astro';
-import Section6 from '../components/sections/Section6.astro';
+
 
 ---
 
@@ -20,17 +18,10 @@ import Section6 from '../components/sections/Section6.astro';
 	<Section3 />
 	<Section4 />
 	<Section5 />
-	<Section6 />
 </BaseLayout>
 
 <style lang="scss">
 	@use '../styles/variables' as *;
 	@use '../styles/mixins' as *;
-
-	h1 {
-		&:hover {
-			color: red;
-		}
-	}
 
 </style>
