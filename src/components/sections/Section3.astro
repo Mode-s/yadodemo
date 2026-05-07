@@ -44,8 +44,8 @@ const facilities = [
     </div>
 
     <div class="facility-list">
-      {facilities.map((group) => (
-        <div class="facility-group">
+      {facilities.map((group, i) => (
+        <div class="facility-group" data-reveal style={`--reveal-delay: ${Math.min(i * 70, 210)}ms`}>
           <p class="facility-category">{group.category}</p>
           <ul class="facility-items">
             {group.items.map((item) => (

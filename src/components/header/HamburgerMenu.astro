@@ -1,12 +1,122 @@
 ---
-import { Icon } from 'astro-icon/components';
-
-const sections = [
-  {id: '', label: ''},
-  {id: '', label: ''},
-  {id: '', label: ''},
-  {id: '', label: ''},
-  {id: '', label: ''},
-  {id: '', label: ''},
-];
 ---
+<button
+  type="button"
+  class="hamburger"
+  aria-controls="mobile-menu"
+  aria-expanded="false"
+  aria-label="メニューを開く"
+  data-menu-button
+>
+  <span class="hamburger-line" aria-hidden="true"></span>
+  <span class="hamburger-line" aria-hidden="true"></span>
+  <span class="hamburger-line" aria-hidden="true"></span>
+</button>
+
+<script is:inline>
+  (() => {
+    const init = () => {
+      const button = document.querySelector('[data-menu-button]');
+      const menu = document.querySelector('[data-mobile-menu]');
+
+      if (!button || !menu) return;
+
+      const setMenuState = (isOpen) => {
+        button.setAttribute('aria-expanded', String(isOpen));
+        button.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+        menu.setAttribute('aria-hidden', String(!isOpen));
+        menu.inert = !isOpen;
+        button.classList.toggle('is-open', isOpen);
+        menu.classList.toggle('is-open', isOpen);
+        document.body.classList.toggle('is-menu-open', isOpen);
+      };
+
+      button.addEventListener('click', () => {
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        setMenuState(!isOpen);
+      });
+
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenuState(false));
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setMenuState(false);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 769px)').matches) {
+          setMenuState(false);
+        }
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+      init();
+    }
+  })();
+</script>
+
+<style lang="scss">
+  @use '../../styles/variables' as *;
+  @use '../../styles/mixins' as *;
+
+  .hamburger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    background-color: rgba(250, 246, 240, 0.92);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    @include tablet {
+      display: flex;
+    }
+
+    &:hover {
+      background-color: $color-bg-warm;
+    }
+
+    @include reduced-motion {
+      transition: none;
+    }
+  }
+
+  .hamburger-line {
+    width: 22px;
+    height: 2px;
+    border-radius: 999px;
+    background-color: $color-primary;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .hamburger.is-open {
+    .hamburger-line:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-line:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+
+  @include reduced-motion {
+    .hamburger-line {
+      transition: none;
+    }
+  }
+</style>

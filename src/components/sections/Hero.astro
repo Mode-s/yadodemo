@@ -4,13 +4,16 @@ import heroImg from '../../assets/images/hero.png';
 ---
 
 <section class="hero">
+  <h1 class="sr-only">山あいの湯宿 静寂庵</h1>
   <div class="hero-inner">
-    <figure class="hero-image">
+    <figure class="hero-image" data-reveal="hero">
       <Image
         src={heroImg}
-        alt="ヒーロー画像の説明"
+        alt="山あいの湯宿 静寂庵の景色"
         width={1320}
         height={800}
+        loading="eager"
+        fetchpriority="high"
       />
     </figure>
   </div>

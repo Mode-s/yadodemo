@@ -1,15 +1,38 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 body {
-  background-image: url($bg);
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
+  position: relative;
   font-family: var(--font-yomogi);
   font-size: $size-base;
   font-weight: 700;
   line-height: 1.8;
+  min-width: 0;
+  overflow-x: hidden;
+  background-color: $color-bg;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url($bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+img,
+svg,
+iframe {
+  max-width: 100%;
 }
 
 // —————————————————— Section Container
@@ -18,6 +41,7 @@ body {
 }
 
 .section .inner {
+  width: 100%;
   max-width: 1024px;
   margin: 0 auto;
   padding: 20px;
@@ -45,4 +69,38 @@ body {
 .nav-icon {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+// —————————————————— Reveal Animation
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.js [data-reveal='hero'] {
+  transform: scale(1.03);
+  transition-duration: 1.2s;
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@include reduced-motion {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
 }

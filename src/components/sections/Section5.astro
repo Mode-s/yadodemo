@@ -7,13 +7,13 @@ import { Icon } from 'astro-icon/components';
       <h2 class="title">お問い合わせ</h2>
     </div>
 
-    <p class="contact-lead">
+    <p class="contact-lead" data-reveal>
       ご予約・ご質問など、お気軽にお問い合わせください。
     </p>
 
     <div class="contact-list">
       <!-- 電話 -->
-      <a href="tel:000-000-0000" class="contact-item">
+      <a href="tel:000-000-0000" class="contact-item" data-reveal style="--reveal-delay: 80ms">
         <span class="contact-item-icon-wrap">
           <Icon name="mdi:phone" class="contact-item-icon" />
         </span>
@@ -23,7 +23,7 @@ import { Icon } from 'astro-icon/components';
       </a>
 
       <!-- メール -->
-      <a href="mailto:info@example.com" class="contact-item">
+      <a href="mailto:info@example.com" class="contact-item" data-reveal style="--reveal-delay: 160ms">
         <span class="contact-item-icon-wrap">
           <Icon name="mdi:email-outline" class="contact-item-icon" />
         </span>
@@ -33,7 +33,7 @@ import { Icon } from 'astro-icon/components';
       </a>
 
       <!-- LINE -->
-      <a href="https://line.me/R/ti/p/YOUR_LINE_ID" target="_blank" rel="noopener noreferrer" class="contact-item">
+      <a href="https://line.me/R/ti/p/YOUR_LINE_ID" target="_blank" rel="noopener noreferrer" class="contact-item" data-reveal style="--reveal-delay: 240ms">
         <span class="contact-item-icon-wrap">
           <Icon name="mdi:chat-outline" class="contact-item-icon" />
         </span>
@@ -132,6 +132,7 @@ import { Icon } from 'astro-icon/components';
   .contact-item-value {
     font-size: $size-sm;
     color: $color-text;
+    overflow-wrap: anywhere;
   }
 
   /* contact-item-note */

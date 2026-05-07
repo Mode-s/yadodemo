@@ -98,25 +98,30 @@ import { Items } from '../../constants/site-map';
   .footer-nav-area {
     display: flex;
     align-items: center;
-    gap: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 
   .footer-nav-list {
     display: flex;
     align-items: center;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 4px 6px;
   }
 
   /* 区切り線「|」を隣接セレクタで挿入 */
   .footer-nav-item + .footer-nav-item::before {
     content: '|';
-    margin-right: 8px;
+    margin-right: 6px;
     color: $color-border;
-    font-size: $size-xs;
+    font-size: 0.3rem; // 11px
   }
 
   .footer-nav-link {
-    font-size: $size-xs;
+    font-size: 0.6875rem; // 11px
+    line-height: 1.6;
+    letter-spacing: 0;
+    white-space: nowrap;
     color: $color-text-light;
     transition: color 0.2s ease;
 
@@ -126,6 +131,13 @@ import { Items } from '../../constants/site-map';
 
     @include reduced-motion {
       transition: none;
+    }
+  }
+
+  @include sp {
+    .footer-nav-link,
+    .footer-nav-item + .footer-nav-item::before {
+      font-size: 0.4rem; // 10px
     }
   }
 

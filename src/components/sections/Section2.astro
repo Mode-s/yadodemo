@@ -48,7 +48,11 @@ const rooms = [
 
     <div class="rooms-list">
       {rooms.map((room, i) => (
-        <div class:list={['rooms-item', { 'rooms-item-reverse': i % 2 !== 0 }]}>
+        <div
+          class:list={['rooms-item', { 'rooms-item-reverse': i % 2 !== 0 }]}
+          data-reveal
+          style={`--reveal-delay: ${Math.min(i * 80, 240)}ms`}
+        >
           <figure class="rooms-item-photo">
             <Image
               src={room.image}
@@ -149,6 +153,7 @@ const rooms = [
   /* rooms-item-meta */
   .rooms-item-meta {
     display: flex;
+    flex-wrap: wrap;
     gap: 24px;
     margin-top: 16px;
   }

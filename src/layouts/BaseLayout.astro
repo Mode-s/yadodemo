@@ -9,7 +9,31 @@ import Footer from '../components/footer/Footer.astro';
 import MobileMenu from '../components/header/MobileMenu.astro';
 import BackToTop from '../components/ui/BackToTop.astro';
 
-const { title } = Astro.props;
+const siteName = '静寂庵';
+const defaultDescription =
+	'山あいの湯宿「静寂庵」。やさしい湯と自然に包まれ、日常を忘れて心と身体を整える小さなお宿です。';
+const defaultImage = '/images/bg.png';
+const { title, description = defaultDescription, image = defaultImage } = Astro.props;
+const pageTitle = title === siteName ? `${siteName} | 山あいの湯宿` : `${title} | ${siteName}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const ogImageUrl = new URL(image, canonicalUrl);
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'LodgingBusiness',
+	name: siteName,
+	description,
+	url: canonicalUrl.toString(),
+	image: ogImageUrl.toString(),
+	telephone: '000-000-0000',
+	address: {
+		'@type': 'PostalAddress',
+		postalCode: '000-0000',
+		addressRegion: '〇〇県',
+		addressLocality: '〇〇市〇〇町',
+		streetAddress: '1234',
+		addressCountry: 'JP',
+	},
+};
 ---
 
 <html lang="ja">
@@ -18,9 +42,27 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<Font cssVariable="--font-yomogi" preload />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{ title }</title>
+		<meta name="description" content={description} />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="canonical" href={canonicalUrl.toString()} />
+		<meta property="og:locale" content="ja_JP" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl.toString()} />
+		<meta property="og:image" content={ogImageUrl.toString()} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl.toString()} />
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+		<script is:inline>
+			document.documentElement.classList.add('js');
+		</script>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
 		<Header />
@@ -28,7 +70,35 @@ const { title } = Astro.props;
 		<main>
 			<slot />
 		</main>
-    <Footer />
+		<Footer />
 		<BackToTop />
+		<script is:inline>
+			(() => {
+				const revealItems = document.querySelectorAll('[data-reveal]');
+
+				if (!revealItems.length) return;
+
+				if (!('IntersectionObserver' in window)) {
+					revealItems.forEach((item) => item.classList.add('is-visible'));
+					return;
+				}
+
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						});
+					},
+					{
+						rootMargin: '0px 0px -12% 0px',
+						threshold: 0.15,
+					}
+				);
+
+				revealItems.forEach((item) => observer.observe(item));
+			})();
+		</script>
 	</body>
 </html>
